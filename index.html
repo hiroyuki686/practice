@@ -1,1 +1,52 @@
-vexing
+install.packages("tidyverse")
+library(tidyverse)
+install.packages("TSstudio")
+library(TSstudio)
+library(Forecast)
+install.packages("gtsummary")
+library(gtsummary)
+df0 <- read.csv("A.csv")
+df1 <- select(df0, Date, Close)
+df1 <- df1 %>%
++     mutate(Date=as.Date(Date, format="%d-%m-%Y"))
+tbl <- df1 %>%
+    select(Date, Close) %>%
+    tbl_summary(
+        type=all_continuous() ~ "continuous2",
+        statistic=all_continuous() ~
+            c(
+                "{mean}",
+                "{median}",
+                "{min}, {max}"
+            )
+    )
+flex_tbl <- as_flex_table(tbl)
+save_as_image(flex_tbl, path=" tbl_summary_flextable.png")
+A <- ts(data=df1$Close, start=c(1999,12), end=c(2022, 12), frequency=252)
+ts_decompose(A)
+ts_cor(A, type="acf", lag.max=5804)
+ts_lags(A, lags=seq(20, 240, by=20), margin=0.05)
+A_s <- ts_split(ts.obj=A, sample.out=2500)
+train <- A_s$train
+test <- A_s$test
+md <- auto.arima(train)
+fc <- forecast(md, h=2500)
+plot_forecast(fc, 
++ Xtitle="Year",
++ Ytitle="Price($)"
++ )
+plot(A, col = "blue", 
++      lwd = 2, 
++      ylim = range(c(train, test)), 
++      ylab="Price($)", 
++      xlab="Year", 
++      main="train vs. test")
+> lines(test, col="red", lwd=2)
+> legend("topleft", legend = c("train", "test"), col = c("blue", "red"), lty = 1, lwd = 2)
+md_ <- auto.arima(A)
+fc_ <- forecast(md_, h=2500)
+plot_forecast(fc_,
++          Xtitle="Year",
++          Ytitle="Price($)"
++ )
+
