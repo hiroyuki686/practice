@@ -40,7 +40,7 @@ fc <- forecast(md, h=2500)<br>
 plot_forecast(fc,<br> 
 + Xtitle="Year",<br>
 + Ytitle="Price($)"<br>
-+ )<br>
++ )
 </p>
 
 <p>
@@ -65,9 +65,9 @@ md_ <- auto.arima(A)
 fc_ <- forecast(md_, h=2500)
 
 <p>
-plot_forecast(fc_,
-+          Xtitle="Year",
-+          Ytitle="Price($)"
+plot_forecast(fc_,<br>
++Xtitle="Year",<br>
++Ytitle="Price($)"<br>
 + )
 <p/>
 
@@ -77,11 +77,11 @@ plot_forecast(fc_,
 <strong>INF4000_source_code</strong>
 <p/>
 install.packages("pacman")<br>
-pacman::p_load(tidyverse)
-setwd("~/Desktop/rproject_result")
+pacman::p_load(tidyverse)<br>
+setwd("~/Desktop/rproject_result")<br>
 
 df0 <- read.csv("A.csv")
-df0$Date <- as.Date(df0$Date, format="%d-%m-%Y")
+df0$Date <- as.Date(df0$Date, format="%d-%m-%Y")<br>
 plot0 <- ggplot(df0, aes(x=Date, y=Close)) +
 +     geom_line() +
 +     labs(x="Date", y="Closing Price") +
@@ -90,7 +90,7 @@ plot0 <- ggplot(df0, aes(x=Date, y=Close)) +
 +         panel.background=element_rect(fill="white", colour="white"),
 +         plot.background=element_rect(fill="white", colour="white")
 +     )
-ggsave("dv0.png", plot=plot0)
+<p>ggsave("dv0.png", plot=plot0)</p>
 
 diff0 <- df0 %>%
 +     mutate(diff_value = Close - lag(Close))
@@ -102,7 +102,7 @@ plot1 <- ggplot(diff0, aes(x=Date, y=diff_value)) +
 +         panel.background=element_rect(fill="white", colour="white"),
 +         plot.background=element_rect(fill="white", colour="white")
 +     )
-ggsave("dv0.png", plot=plot1)
+<p>ggsave("dv0.png", plot=plot1)</p>
 
 diff1 <- diff0 %>%
 +     mutate(diff_per = 100*(diff_value/lag(Close)))
@@ -114,12 +114,12 @@ plot2 <- ggplot(diff1, aes(x=Date, y=diff_per)) +
 +         panel.background=element_rect(fill="white", colour="white"),
 +         plot.background=element_rect(fill="white", colour="white")
 +     )
-ggsave("dv2.png", plot=plot2)
+<p>ggsave("dv2.png", plot=plot2)</p>
 
 clean <- diff1$diff_per[!is.na(diff1$diff_per)]
 df_clean <- as.data.frame(clean)
 
-#hist(clean, breaks=seq(min(clean)-0.5, max(clean)+0.5, by=0.5))
+hist(clean, breaks=seq(min(clean)-0.5, max(clean)+0.5, by=0.5))#alternative solution to show histogram<br>
 
 plot3 <- ggplot(df_clean, aes(x=clean)) +
 +     geom_histogram(binwidth=0.5, fill="black", colour="white") +
@@ -129,7 +129,7 @@ plot3 <- ggplot(df_clean, aes(x=clean)) +
 +         panel.background=element_rect(fill="white", colour="white"),
 +         plot.background=element_rect(fill="white", colour="white")
 +     )
-ggsave("dv3.png", plot=plot3)
+<p>ggsave("dv3.png", plot=plot3)</p>
 
 #df_clean %>%
 +     ggplot() +
@@ -143,7 +143,7 @@ plot4 <- ggplot(df_clean, aes(x=frequency(clean), y=clean)) +
 +         panel.background=element_rect(fill="white", colour="white"),
 +         plot.background=element_rect(fill="white", colour="white")
 +     )
-ggsave("dv4.png", plot=plot4)
+<p>ggsave("dv4.png", plot=plot4)<p>
 
 plot5 <- ggplot(df_clean, aes(x=Close, y=Volume)) +
 +     geom_point() +
