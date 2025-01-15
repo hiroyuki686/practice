@@ -56,15 +56,12 @@ lines(test, col="red", lwd=2)
 legend("topleft", legend = c("train", "test"), col = c("blue", "red"), lty = 1, lwd = 2)
 </p>
 
-md_ <- auto.arima(A)
+md_ <- auto.arima(A)<br>
 
-fc_ <- forecast(md_, h=2500)<br>
+fc_ <- forecast(md_, h=2500)
 
 <p>
-plot_forecast(fc_,<br>
-+Xtitle="Year",<br>
-+Ytitle="Price($)"<br>
-+ )
+plot_forecast(fc_, Xtitle="Year", Ytitle="Price($)")
 <p/>
 
 <hr>
