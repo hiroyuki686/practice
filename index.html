@@ -12,8 +12,7 @@ library(gtsummary)
 <p>
 df0 <- read.csv("A.csv")<br>
 df1 <- select(df0, Date, Close)<br>
-df1 <- df1 %>%<br>
-+ mutate(Date=as.Date(Date, format="%d-%m-%Y"))<br>
+df1 <- df1 %>% mutate(Date=as.Date(Date, format="%d-%m-%Y"))<br>
 </p>
 
 <p>
@@ -37,10 +36,7 @@ fc <- forecast(md, h=2500)<br>
 </p>
 
 <p>
-plot_forecast(fc,<br> 
-+ Xtitle="Year",<br>
-+ Ytitle="Price($)"<br>
-+ )
+plot_forecast(fc, Xtitle="Year", Ytitle="Price($)")
 </p>
 
 <p>
