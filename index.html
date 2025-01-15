@@ -8,34 +8,34 @@ install.packages("gtsummary")<br>
 library(gtsummary)<br>
 df0 <- read.csv("A.csv")<br>
 df1 <- select(df0, Date, Close)<br>
-df1 <- df1 %>%
-+     mutate(Date=as.Date(Date, format="%d-%m-%Y"))
-tbl <- df1 %>%
-    select(Date, Close) %>%
-    tbl_summary(
-        type=all_continuous() ~ "continuous2",
-        statistic=all_continuous() ~
-            c(
-                "{mean}",
-                "{median}",
-                "{min}, {max}"
-            )
-    )
-<p>flex_tbl <- as_flex_table(tbl)<p/>
-save_as_image(flex_tbl, path=" tbl_summary_flextable.png")
-A <- ts(data=df1$Close, start=c(1999,12), end=c(2022, 12), frequency=252)
-ts_decompose(A)
-ts_cor(A, type="acf", lag.max=5804)
-ts_lags(A, lags=seq(20, 240, by=20), margin=0.05)
-A_s <- ts_split(ts.obj=A, sample.out=2500)
-train <- A_s$train
-test <- A_s$test
-md <- auto.arima(train)
-<p>fc <- forecast(md, h=2500)<p/>
-plot_forecast(fc, 
-+ Xtitle="Year",
-+ Ytitle="Price($)"
-+ )
+df1 <- df1 %>%<br>
++     mutate(Date=as.Date(Date, format="%d-%m-%Y"))<br>
+tbl <- df1 %>%<br>
+    select(Date, Close) %>%<br>
+    tbl_summary(<br>
+        type=all_continuous() ~ "continuous2",<br>
+        statistic=all_continuous() ~<br>
+            c(<br>
+                "{mean}",<br>
+                "{median}",<br>
+                "{min}, {max}"<br>
+            )<br>
+    )<br>
+flex_tbl <- as_flex_table(tbl)<br>
+save_as_image(flex_tbl, path=" tbl_summary_flextable.png")<br>
+A <- ts(data=df1$Close, start=c(1999,12), end=c(2022, 12), frequency=252)<br>
+ts_decompose(A)<br>
+ts_cor(A, type="acf", lag.max=5804)<br>
+ts_lags(A, lags=seq(20, 240, by=20), margin=0.05)<br>
+A_s <- ts_split(ts.obj=A, sample.out=2500)<br>
+train <- A_s$train<br>
+test <- A_s$test<br>
+md <- auto.arima(train)<br>
+fc <- forecast(md, h=2500)<br>
+plot_forecast(fc,<br> 
++ Xtitle="Year",<br>
++ Ytitle="Price($)"<br>
++ )<br>
 plot(A, col = "blue", 
 +      lwd = 2, 
 +      ylim = range(c(train, test)), 
