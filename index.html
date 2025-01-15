@@ -1,13 +1,13 @@
 <p>#INF6027_source_code<p/>
-<br>install.packages("tidyverse")<br>
-<br>library(tidyverse)<br>
-<p>install.packages("TSstudio")<p/>
-<br>library(TSstudio)<br>
-library(Forecast)
-install.packages("gtsummary")
-library(gtsummary)
-df0 <- read.csv("A.csv")
-df1 <- select(df0, Date, Close)
+install.packages("tidyverse")<br>
+library(tidyverse)<br>
+install.packages("TSstudio")<br>
+library(TSstudio)<br>
+library(Forecast)<br>
+install.packages("gtsummary")<br>
+library(gtsummary)<br>
+df0 <- read.csv("A.csv")<br>
+df1 <- select(df0, Date, Close)<br>
 df1 <- df1 %>%
 +     mutate(Date=as.Date(Date, format="%d-%m-%Y"))
 tbl <- df1 %>%
