@@ -58,17 +58,17 @@ legend("topleft", legend = c("train", "test"), col = c("blue", "red"), lty = 1, 
 
 md_ <- auto.arima(A)<br>
 
-fc_ <- forecast(md_, h=2500)
+fc_ <- forecast(md_, h=2500)<br>
 
 <p>
 plot_forecast(fc_, Xtitle="Year", Ytitle="Price($)")
-<p/>
+</p>
 
 <hr>
 
 <p>
 <strong>INF4000_source_code</strong>
-<p/>
+</p>
 install.packages("pacman")<br>
 pacman::p_load(tidyverse)<br>
 setwd("~/Desktop/rproject_result")<br>
