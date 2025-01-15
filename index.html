@@ -21,7 +21,7 @@ tbl <- df1 %>%
                 "{min}, {max}"
             )
     )
-flex_tbl <- as_flex_table(tbl)
+<p>flex_tbl <- as_flex_table(tbl)<p/>
 save_as_image(flex_tbl, path=" tbl_summary_flextable.png")
 A <- ts(data=df1$Close, start=c(1999,12), end=c(2022, 12), frequency=252)
 ts_decompose(A)
@@ -31,7 +31,7 @@ A_s <- ts_split(ts.obj=A, sample.out=2500)
 train <- A_s$train
 test <- A_s$test
 md <- auto.arima(train)
-fc <- forecast(md, h=2500)
+<p>fc <- forecast(md, h=2500)<p/>
 plot_forecast(fc, 
 + Xtitle="Year",
 + Ytitle="Price($)"
