@@ -7,19 +7,21 @@ install.packages("TSstudio")<br>
 library(TSstudio)<br>
 library(Forecast)<br>
 install.packages("gtsummary")<br>
-library(gtsummary)<br>
+library(gtsummary)
+
 <p>
 df0 <- read.csv("A.csv")<br>
 df1 <- select(df0, Date, Close)<br>
 df1 <- df1 %>%<br>
-+mutate(Date=as.Date(Date, format="%d-%m-%Y"))<br>
++ mutate(Date=as.Date(Date, format="%d-%m-%Y"))<br>
 </p>
+
 <p>
 tbl <- df1 %>%<br>
 select(Date, Close) %>%<br>
-tbl_summary(type=all_continuous() ~ "continuous2", statistic=all_continuous() ~<br>
-c("{mean}", "{median}", "{min}, {max}"))<br>
+tbl_summary(type=all_continuous() ~ "continuous2", statistic=all_continuous() ~ c("{mean}", "{median}", "{min}, {max}"))<br>
 </p>
+
 <p>
 flex_tbl <- as_flex_table(tbl)<br>
 save_as_image(flex_tbl, path=" tbl_summary_flextable.png")<br>
@@ -33,6 +35,7 @@ test <- A_s$test<br>
 md <- auto.arima(train)<br>
 fc <- forecast(md, h=2500)<br>
 </p>
+
 <p>
 plot_forecast(fc,<br> 
 + Xtitle="Year",<br>
@@ -44,8 +47,16 @@ plot(A, col = "blue",<br>
 +      ylab="Price($)",<br>
 +      xlab="Year",<br> 
 +      main="train vs. test")<br>
-<p>lines(test, col="red", lwd=2)</p>
-<p>legend("topleft", legend = c("train", "test"), col = c("blue", "red"), lty = 1, lwd = 2)</p>
+</p>
+
+<p>
+lines(test, col="red", lwd=2)
+</p>
+
+<p>
+legend("topleft", legend = c("train", "test"), col = c("blue", "red"), lty = 1, lwd = 2)
+</p>
+
 md_ <- auto.arima(A)
 fc_ <- forecast(md_, h=2500)
 plot_forecast(fc_,
@@ -53,7 +64,9 @@ plot_forecast(fc_,
 +          Ytitle="Price($)"
 + )
 <p/>
+
 <hr>
+
 <p>
 <strong>INF4000_source_code</strong>
 <p/>
