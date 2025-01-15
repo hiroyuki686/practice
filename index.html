@@ -12,15 +12,8 @@ df1 <- df1 %>%<br>
 +     mutate(Date=as.Date(Date, format="%d-%m-%Y"))<br>
 tbl <- df1 %>%<br>
     select(Date, Close) %>%<br>
-    tbl_summary(<br>
-        type=all_continuous() ~ "continuous2",<br>
-        statistic=all_continuous() ~<br>
-            c(<br>
-                "{mean}",<br>
-                "{median}",<br>
-                "{min}, {max}"<br>
-            )<br>
-    )<br>
+    tbl_summary(type=all_continuous() ~ "continuous2", statistic=all_continuous() ~<br>
+            c("{mean}", "{median}", "{min}, {max}"))<br>
 flex_tbl <- as_flex_table(tbl)<br>
 save_as_image(flex_tbl, path=" tbl_summary_flextable.png")<br>
 A <- ts(data=df1$Close, start=c(1999,12), end=c(2022, 12), frequency=252)<br>
@@ -50,7 +43,7 @@ plot_forecast(fc_,
 +          Xtitle="Year",
 +          Ytitle="Price($)"
 <p>+ )<p/>
-
+<hr>
 <p>#INF4000_source_code<p/>
 install.packages("pacman")<br>
 pacman::p_load(tidyverse)
