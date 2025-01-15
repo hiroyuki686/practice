@@ -42,6 +42,7 @@ plot_forecast(fc,<br>
 + Ytitle="Price($)"<br>
 + )<br>
 </p>
+
 <p>
 plot(A, col = "blue",<br>
 +      lwd = 2,<br>
@@ -61,8 +62,9 @@ legend("topleft", legend = c("train", "test"), col = c("blue", "red"), lty = 1, 
 
 md_ <- auto.arima(A)
 
-<p>
 fc_ <- forecast(md_, h=2500)
+
+<p>
 plot_forecast(fc_,
 +          Xtitle="Year",
 +          Ytitle="Price($)"
