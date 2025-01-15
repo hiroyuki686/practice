@@ -1,4 +1,4 @@
-<p>#INF6027_source_code<p/>
+<p>#INF6027_source_code</p>
 install.packages("tidyverse")<br>
 library(tidyverse)<br>
 install.packages("TSstudio")<br>
@@ -6,17 +6,19 @@ library(TSstudio)<br>
 library(Forecast)<br>
 install.packages("gtsummary")<br>
 library(gtsummary)<br>
-<hr>
+<p>
 df0 <- read.csv("A.csv")<br>
 df1 <- select(df0, Date, Close)<br>
 df1 <- df1 %>%<br>
 +mutate(Date=as.Date(Date, format="%d-%m-%Y"))<br>
-<hr>
+</p>
+<p>
 tbl <- df1 %>%<br>
 select(Date, Close) %>%<br>
 tbl_summary(type=all_continuous() ~ "continuous2", statistic=all_continuous() ~<br>
 c("{mean}", "{median}", "{min}, {max}"))<br>
-<hr>
+</p>
+<p>
 flex_tbl <- as_flex_table(tbl)<br>
 save_as_image(flex_tbl, path=" tbl_summary_flextable.png")<br>
 A <- ts(data=df1$Close, start=c(1999,12), end=c(2022, 12), frequency=252)<br>
@@ -28,6 +30,7 @@ train <- A_s$train<br>
 test <- A_s$test<br>
 md <- auto.arima(train)<br>
 fc <- forecast(md, h=2500)<br>
+</p>
 plot_forecast(fc,<br> 
 + Xtitle="Year",<br>
 + Ytitle="Price($)"<br>
