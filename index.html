@@ -69,11 +69,14 @@ plot_forecast(fc_, Xtitle="Year", Ytitle="Price($)")
 <p>
 <strong><i>INF4000_source_code</i></strong>
 </p>
+
+<p>
 install.packages("pacman")<br>
 pacman::p_load(tidyverse)<br>
-setwd("~/Desktop/rproject_result")<br>
+setwd("~/Desktop/rproject_result")
+</p>
 
-df0 <- read.csv("A.csv")
+df0 <- read.csv("A.csv")<br>
 df0$Date <- as.Date(df0$Date, format="%d-%m-%Y")<br>
 plot0 <- ggplot(df0, aes(x=Date, y=Close))<br>
 +     geom_line()<br>
