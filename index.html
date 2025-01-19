@@ -112,7 +112,9 @@ plot2 <- ggplot(diff1, aes(x=Date, y=diff_per))<br>
 clean <- diff1$diff_per[!is.na(diff1$diff_per)]<br>
 df_clean <- as.data.frame(clean)
 
-hist(clean, breaks=seq(min(clean)-0.5, max(clean)+0.5, by=0.5))#alternative solution to show histogram<br>
+<p>
+hist(clean, breaks=seq(min(clean)-0.5, max(clean)+0.5, by=0.5))#alternative solution to show histogram
+</p>
 
 plot3 <- ggplot(df_clean, aes(x=clean))<br>
 +     geom_histogram(binwidth=0.5, fill="black", colour="white")<br>
@@ -124,9 +126,11 @@ plot3 <- ggplot(df_clean, aes(x=clean))<br>
 +     )
 <p>ggsave("dv3.png", plot=plot3)</p>
 
-#df_clean %>%<br>
-+     ggplot()<br>
+<p>
+#df_clean %>%
++     ggplot()
 +     geom_violin(aes(x=frequency(clean), y=clean))
+</p>
 
 plot4 <- ggplot(df_clean, aes(x=frequency(clean), y=clean))<br>
 +     geom_violin(fill="white", colour="black")<br>
