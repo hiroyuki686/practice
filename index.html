@@ -67,7 +67,7 @@ plot_forecast(fc_, Xtitle="Year", Ytitle="Price($)")
 <hr>
 
 <p>
-<strong>INF4000_source_code</strong>
+<strong><i>INF4000_source_code</i></strong>
 </p>
 install.packages("pacman")<br>
 pacman::p_load(tidyverse)<br>
@@ -75,76 +75,76 @@ setwd("~/Desktop/rproject_result")<br>
 
 df0 <- read.csv("A.csv")
 df0$Date <- as.Date(df0$Date, format="%d-%m-%Y")<br>
-plot0 <- ggplot(df0, aes(x=Date, y=Close)) +
-+     geom_line() +
-+     labs(x="Date", y="Closing Price") +
-+     theme_minimal() +
-+     theme(
-+         panel.background=element_rect(fill="white", colour="white"),
-+         plot.background=element_rect(fill="white", colour="white")
+plot0 <- ggplot(df0, aes(x=Date, y=Close))<br>
++     geom_line()<br>
++     labs(x="Date", y="Closing Price")<br>
++     theme_minimal()<br>
++     theme(<br>
++         panel.background=element_rect(fill="white", colour="white"),<br>
++         plot.background=element_rect(fill="white", colour="white")<br>
 +     )
 <p>ggsave("dv0.png", plot=plot0)</p>
 
-diff0 <- df0 %>%
-+     mutate(diff_value = Close - lag(Close))
-plot1 <- ggplot(diff0, aes(x=Date, y=diff_value)) +
-+     geom_line() +
-+     labs(x="Date", y="Differencing of Closing Price") +
-+     theme_minimal() +
-+     theme(
-+         panel.background=element_rect(fill="white", colour="white"),
-+         plot.background=element_rect(fill="white", colour="white")
+diff0 <- df0 %>%<br>
++     mutate(diff_value = Close - lag(Close))<br>
+plot1 <- ggplot(diff0, aes(x=Date, y=diff_value))<br>
++     geom_line()<br>
++     labs(x="Date", y="Differencing of Closing Price")<br>
++     theme_minimal()<br>
++     theme(<br>
++         panel.background=element_rect(fill="white", colour="white"),<br>
++         plot.background=element_rect(fill="white", colour="white")<br>
 +     )
 <p>ggsave("dv0.png", plot=plot1)</p>
 
-diff1 <- diff0 %>%
-+     mutate(diff_per = 100*(diff_value/lag(Close)))
-plot2 <- ggplot(diff1, aes(x=Date, y=diff_per)) +
-+     geom_line() + 
-+     labs(x="Date", y="Percentage Change") +
-+     theme_minimal() +
-+     theme(
-+         panel.background=element_rect(fill="white", colour="white"),
-+         plot.background=element_rect(fill="white", colour="white")
+diff1 <- diff0 %>%<br>
++     mutate(diff_per = 100*(diff_value/lag(Close)))<br>
+plot2 <- ggplot(diff1, aes(x=Date, y=diff_per))<br>
++     geom_line()<br>
++     labs(x="Date", y="Percentage Change")<br>
++     theme_minimal()<br>
++     theme(<br>
++         panel.background=element_rect(fill="white", colour="white"),<br>
++         plot.background=element_rect(fill="white", colour="white")<br>
 +     )
 <p>ggsave("dv2.png", plot=plot2)</p>
 
-clean <- diff1$diff_per[!is.na(diff1$diff_per)]
+clean <- diff1$diff_per[!is.na(diff1$diff_per)]<br>
 df_clean <- as.data.frame(clean)
 
 hist(clean, breaks=seq(min(clean)-0.5, max(clean)+0.5, by=0.5))#alternative solution to show histogram<br>
 
-plot3 <- ggplot(df_clean, aes(x=clean)) +
-+     geom_histogram(binwidth=0.5, fill="black", colour="white") +
-+     labs(x="Percentage Change", y="Frequency") +
-+     theme_minimal() +
-+     theme(
-+         panel.background=element_rect(fill="white", colour="white"),
-+         plot.background=element_rect(fill="white", colour="white")
+plot3 <- ggplot(df_clean, aes(x=clean))<br>
++     geom_histogram(binwidth=0.5, fill="black", colour="white")<br>
++     labs(x="Percentage Change", y="Frequency")<br>
++     theme_minimal()<br>
++     theme(<br>
++         panel.background=element_rect(fill="white", colour="white"),<br>
++         plot.background=element_rect(fill="white", colour="white")<br>
 +     )
 <p>ggsave("dv3.png", plot=plot3)</p>
 
-#df_clean %>%
-+     ggplot() +
+#df_clean %>%<br>
++     ggplot()<br>
 +     geom_violin(aes(x=frequency(clean), y=clean))
 
-plot4 <- ggplot(df_clean, aes(x=frequency(clean), y=clean)) +
-+     geom_violin(fill="white", colour="black") +
-+     labs(x="Frequency", y="Percentage Change") +
-+     theme_minimal() +
-+     theme(
-+         panel.background=element_rect(fill="white", colour="white"),
-+         plot.background=element_rect(fill="white", colour="white")
+plot4 <- ggplot(df_clean, aes(x=frequency(clean), y=clean))<br>
++     geom_violin(fill="white", colour="black")<br>
++     labs(x="Frequency", y="Percentage Change")<br>
++     theme_minimal()<br>
++     theme(<br>
++         panel.background=element_rect(fill="white", colour="white"),<br>
++         plot.background=element_rect(fill="white", colour="white")<br>
 +     )
 <p>ggsave("dv4.png", plot=plot4)<p>
 
-plot5 <- ggplot(df_clean, aes(x=Close, y=Volume)) +
-+     geom_point() +
-+     labs(x="Closing Price", y="Log of Volume") +
-+     scale_y_continuous(trans="log10") +
-+     theme_minimal() +
-+     theme(
-+         panel.background=element_rect(fill="white", colour="white"),
-+         plot.background=element_rect(fill="white", colour="white")
+plot5 <- ggplot(df_clean, aes(x=Close, y=Volume))<br>
++     geom_point()<br>
++     labs(x="Closing Price", y="Log of Volume")<br>
++     scale_y_continuous(trans="log10")<br>
++     theme_minimal()<br>
++     theme(<br>
++         panel.background=element_rect(fill="white", colour="white"),<br>
++         plot.background=element_rect(fill="white", colour="white")<br>
 +     )
 <p>ggsave("dv5.png", plot=plot5)</p>
